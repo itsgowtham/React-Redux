@@ -1,0 +1,33 @@
+{
+  "name": "ski-day-count",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server",
+    "challenge-a": "babel-node ./src/challenges/FETCH_RESORT_NAMES.js",
+    "challenge-b": "babel-node ./src/challenges/CANCEL_FETCHING.js",
+    "challenge-c": "babel-node ./src/challenges/CLEAR_SUGGESTIONS.js",
+    "challenge-d": "babel-node ./src/challenges/CHANGE_SUGGESTIONS.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "json-loader": "^0.5.7",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "expect": "^24.9.0",
+    "path": "^0.12.7",
+    "redux": "^4.0.4"
+  }
+}

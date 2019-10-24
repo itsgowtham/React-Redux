@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Composing Components</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .heading {
+        color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Lake = ({ name }) => <h1>{name}</h1>;
+
+      // class components
+      class App extends React.Component {
+        state = {
+          loggedIn: false
+        };
+        render() {
+          return (
+            <div>
+              <div>
+                The user is{" "}
+                {this.state.loggedIn ? "logged in" : "not logged in"}
+              </div>
+              <Lake name="Lake Tahoe" />
+              <Lake name="Angora Tahoe" />
+              <Lake name="Shirley Tahoe" />
+            </div>
+          );
+        }
+      }
+
+      /*
+      components
+      const App = () => {
+        return (
+          <div>
+            <Lake name="Lake Tahoe" />
+            <Lake name="Angora Tahoe" />
+            <Lake name="Shirley Tahoe" />
+          </div>
+        );
+      };
+      */
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
