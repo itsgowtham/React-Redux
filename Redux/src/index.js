@@ -1,34 +1,63 @@
-import C from './constants';
+import expect from 'expect';
 import storeFactory from './store';
+import {
+        addDay,
+        removeDay,
+        setGoal,
+        addError,
+        clearError,
+        changeSuggestions,
+        clearSuggestions,
+        randomGoals,
+} from './actions';
 
-const initialState = localStorage['redux-store'] ?
-    JSON.parse(localStorage['redux-store']) : {};
+const store = storeFactory();
 
-const saveState = () => {
-        const state = JSON.stringify(store.getState());
-        localStorage['redux-store'] = state;
-};;
+store.dispatch(addDay('Heavenly', '2016-12-22'));
 
-const store = storeFactory(initialState);
+store.dispatch(removeDay('2016-12-22'));
 
-store.subscribe(saveState);
+store.dispatch(setGoal(55));
 
-store.dispatch({
-        type: C.ADD_DAY,
-        payload: {
-        'resort': 'Mt Shatsta',
-                date: '2016-3-28',
-                powder: true,
-        'backcountry': false
-        },
-});;
+store.dispatch(addError('something went wrong'));
 
-store.dispatch({
-        type: C.ADD_DAY,
-        payload: {
-                resort: 'Mt Shatsta',
-                date: '2016-1-2',
-        'powder': false,
-        'backcountry': true
-        },
-});;
+expect(store.getState().errors).toEqual(['something went wrong']);
+
+console.log(`
+
+    addError() Action Creator Works!!!
+
+`);
+
+store.dispatch(clearError(0));
+
+expect(store.getState().errors).toEqual([]);
+
+console.log(`
+
+    clearError() Action Creator Works!!!
+
+`);
+
+store.dispatch(changeSuggestions(['One', 'Two', 'Three']));
+
+expect(store.getState().resortNames.suggestions).toEqual(['One', 'Two', 'Three']);
+
+console.log(`
+
+    changeSuggestions() Action Creator Works!!!
+
+`);
+
+store.dispatch(clearSuggestions());
+
+expect(store.getState().resortNames.suggestions).toEqual([]);
+
+console.log(`
+
+    clearSuggestions() Action Creator Works!!!
+
+`);
+
+store.dispatch(randomGoals());
+store.dispatch(randomGoals());
