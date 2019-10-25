@@ -9,6 +9,7 @@ import {
         changeSuggestions,
         clearSuggestions,
         randomGoals,
+        suggestResortNames,
 } from './actions';
 
 const store = storeFactory();
@@ -59,5 +60,7 @@ console.log(`
 
 `);
 
-store.dispatch(randomGoals());
-store.dispatch(randomGoals());
+// store.dispatch(randomGoals());
+// store.dispatch(randomGoals());
+
+store.dispatch(suggestResortNames('he'));

@@ -70,7 +70,7 @@ export const suggestResortNames = value => dispatch => {
                         dispatch(addError(error.message));
 
                         dispatch({
-                                type: CANCEL_FETCHING,
+                                type: C.CANCEL_FETCHING,
                         });
                 });
 };
