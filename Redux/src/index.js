@@ -1,25 +1,34 @@
-import { createStore } from 'redux';
 import C from './constants';
-import appReducer from './store/reducers';
+import storeFactory from './store';
 
-// const initialState = localStorage['redux-store'] ? JSON.parse(localStorage['redux-store']) : {};
+const initialState = localStorage['redux-store'] ?
+    JSON.parse(localStorage['redux-store']) : {};
 
-const store = createStore(appReducer);
+const saveState = () => {
+        const state = JSON.stringify(store.getState());
+        localStorage['redux-store'] = state;
+};;
 
-// store.subscribe(() => {
-//         const state = JSON.stringify(store.getState());
-//         localStorage['redux-store'] = state;
-// });
+const store = storeFactory(initialState);
 
-const unSubscribeGoalLogger = store.subscribe(() => console.log(`goal: ${store.getState().goal}`));
+store.subscribe(saveState);
 
-setInterval(() => {
-        store.dispatch({
-                type: C.SET_GOAL,
-                payload: Math.floor(Math.random() * 100),
-        });
-}, 250);
+store.dispatch({
+        type: C.ADD_DAY,
+        payload: {
+        'resort': 'Mt Shatsta',
+                date: '2016-3-28',
+                powder: true,
+        'backcountry': false
+        },
+});;
 
-setTimeout(() => {
-        unSubscribeGoalLogger();
-}, 3000);
+store.dispatch({
+        type: C.ADD_DAY,
+        payload: {
+                resort: 'Mt Shatsta',
+                date: '2016-1-2',
+        'powder': false,
+        'backcountry': true
+        },
+});;
